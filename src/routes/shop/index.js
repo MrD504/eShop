@@ -15,7 +15,7 @@ const Shop = (props) => {
             window.location.href= `${href.substring(0, href.indexOf('#'))}admin${href.substring(href.indexOf('#'))}`;
         }
 
-    fetch(".netlify/functions/getproducts")
+    fetch("/.netlify/functions/getproducts")
         .then((_res) => {
             console.log(products);
             SetProducts(products.objects);
