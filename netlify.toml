@@ -5,3 +5,12 @@
 [build.environment]
   YARN_VERSION = "1.9.4"
   YARN_FLAGS = "--no-ignore-optional"
+[dev]
+  targetPort = 8080
+  port = 8888
+  framework = "#custom"
+  command = "yarn start:development"
+  functions = "my_functions"
+[dev.environment]
+  YARN_VERSION = "1.9.4"
+  YARN_FLAGS = "--no-ignore-optional"

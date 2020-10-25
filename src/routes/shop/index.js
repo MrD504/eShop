@@ -16,9 +16,14 @@ const Shop = (props) => {
         }
 
     fetch("/.netlify/functions/getproducts")
-        .then((_res) => {
-            console.log(products);
-            SetProducts(products.objects);
+        .then(async(_res) => {
+            if (!_res.ok) {
+                console.error(`failed to get products ${res}`)
+                return;
+            }
+            const formattedResult = await _res.json();
+            console.log(formattedResult);
+            SetProducts(formattedResult.result.objects);
         })
     },[]);
 
@@ -27,7 +32,7 @@ const Shop = (props) => {
             Shop
             <ul>
                 {products && products.map(product => {
-                    return <li>product.item_data.name</li>;
+                    return <li>{product.item_data.name}</li>;
                 })}
             </ul>
         </div>
