@@ -1,3 +1,5 @@
+const fetch = require('node-fetch');
+
 exports.handler = async function() {
     const result = await fetch(process.env.SandBoxURL, {
         headers: {
