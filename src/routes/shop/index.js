@@ -15,15 +15,7 @@ const Shop = (props) => {
             window.location.href= `${href.substring(0, href.indexOf('#'))}admin${href.substring(href.indexOf('#'))}`;
         }
 
-        fetch("https://connect.squareupsandbox.com/v2/catalog/list?types=ITEM", {
-            'Square-Version': '2020-09-23',
-            'Authorization': 'Bearer EAAAEJGa31JPCxhI06b8jm_biLaGvVAx3TEB57_C2U7ajTCTxktj02ou_BSXjspq',
-            'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': '*',
-            'Accept': 'application/json',
-            'Access-Control-Allow-Headers': 'X-Requested-With',
-            'mode': 'cors'
-        })
+    fetch(".netlify/functions/getproducts")
         .then((_res) => {
             console.log(products);
             SetProducts(products.objects);
@@ -34,7 +26,7 @@ const Shop = (props) => {
         <div class={style.home}>
             Shop
             <ul>
-                {products.map(product => {
+                {products && products.map(product => {
                     return <li>product.item_data.name</li>;
                 })}
             </ul>
