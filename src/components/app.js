@@ -9,6 +9,7 @@ import Blogs from '../routes/blogs';
 import Blog from '../routes/blog';
 import Contact from '../routes/contact';
 import ContactSuccess from '../routes/contact-success';
+import Shop from '../routes/shop';
 import NotFoundPage from '../routes/notfound';
 
 export default class App extends Component {
@@ -32,6 +33,7 @@ export default class App extends Component {
 						<Blog path="/blog/:name" />
 						<Contact path="/contact/" />
 						<ContactSuccess path="/contact/success" />
+						<Shop path="/shop/" />
 						<NotFoundPage type="404" default />
 					</Router>
 				</div>

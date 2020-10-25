@@ -13,7 +13,8 @@ module.exports = () => {
 			}
 		},
 		{ url: '/contact/' },
-		{ url: '/contact/success' }
+		{ url: '/contact/success' },
+		{ url: '/shop/' },
 	];
 
 	// adding blogs list posts page
