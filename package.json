@@ -42,7 +42,8 @@
     "preact": "^10.4.6",
     "preact-cli-plugin-netlify": "^1.6.0",
     "preact-render-to-string": "^5.1.10",
-    "preact-router": "^3.0.1"
+    "preact-router": "^3.0.1",
+    "square-connect": "^4.20201028.5"
   },
   "jest": {
     "preset": "jest-preset-preact"

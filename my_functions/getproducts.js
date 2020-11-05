@@ -2,8 +2,8 @@ const fetch = require('node-fetch');
 
 exports.handler = async function() {
     const headers = {
-            'Square-Version': '2020-09-23',
-            'Authorization': process.env.SandBoxBearer, 
+            'Square-Version': '2020-10-28',
+            'Authorization': `Bearer ${process.env.SandBoxBearer}`, 
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': '*',
             'Accept': 'application/json',
@@ -11,7 +11,7 @@ exports.handler = async function() {
             'mode': 'cors'
     }
     try {
-        const result = await fetch(`${process.env.SandBoxURL}/catalog/list?types=ITEM`, {
+        const result = await fetch(`${process.env.SandBoxURL}/catalog/list?types=ITEM,IMAGE`, {
             headers: headers
         })
 

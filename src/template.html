@@ -21,6 +21,8 @@
 		<% if(htmlWebpackPlugin.options.seo && 'subtitle' in htmlWebpackPlugin.options.seo) {%>
 			<meta property="twitter:description" content="<%= htmlWebpackPlugin.options.seo.subtitle %>" />
 		<% } %>
+		<script type="text/javascript" src="https://js.squareupsandbox.com/v2/paymentform">
+		</script>
 		<% preact.headEnd %>
 	</head>
 	<body>

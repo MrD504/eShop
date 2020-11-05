@@ -10,6 +10,7 @@ import Blog from '../routes/blog';
 import Contact from '../routes/contact';
 import ContactSuccess from '../routes/contact-success';
 import Shop from '../routes/shop';
+import PaymentForm from '../routes/payment';
 import NotFoundPage from '../routes/notfound';
 
 export default class App extends Component {
@@ -34,6 +35,7 @@ export default class App extends Component {
 						<Contact path="/contact/" />
 						<ContactSuccess path="/contact/success" />
 						<Shop path="/shop/" />
+						<PaymentForm path="/payment" />
 						<NotFoundPage type="404" default />
 					</Router>
 				</div>

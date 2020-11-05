@@ -1,8 +1,9 @@
 import { h } from 'preact';
 import { useEffect, useState } from 'preact/hooks';
+import Product from '../../components/product';
 import style from './style';
 
-const Shop = (props) => {
+const Shop = (_props) => {
     const [products, SetProducts] = useState([]);
 	/**
 	 * Netlify CMS's accept invite link land on home page.
@@ -13,18 +14,29 @@ const Shop = (props) => {
 		if (window !== undefined && window.location.href.includes('#invite_token')) {
 			const { href } = window.location;
             window.location.href= `${href.substring(0, href.indexOf('#'))}admin${href.substring(href.indexOf('#'))}`;
-        }
-
-    fetch("/.netlify/functions/getproducts")
+        }        
+    
+        // Get all products and images
+        fetch("/.netlify/functions/getproducts")
         .then(async(_res) => {
             if (!_res.ok) {
-                console.error(`failed to get products ${res}`)
+                console.error(`failed to get products ${_res}`)
                 return;
             }
             const formattedResult = await _res.json();
-            console.log(formattedResult);
-            SetProducts(formattedResult.result.objects);
+            const prods = formattedResult.result.objects.filter(_item => _item.type === "ITEM");
+            const images = formattedResult.result.objects.filter(_item => _item.type === "IMAGE");
+            const prodsWithImg = prods.map(_item => {
+
+                // Get image that matches product
+                const imagePath = images.filter(_img => _item.image_id === _img.id)
+                _item.imagePath = imagePath[0].image_data.url;
+                return _item;
+            })
+            SetProducts(prodsWithImg);
         })
+
+        // Get all imagepaths
     },[]);
 
     return (
@@ -32,7 +44,7 @@ const Shop = (props) => {
             Shop
             <ul>
                 {products && products.map(product => {
-                    return <li>{product.item_data.name}</li>;
+                    return <Product item={product} />
                 })}
             </ul>
         </div>
