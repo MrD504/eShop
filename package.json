@@ -34,15 +34,23 @@
     "webpack-bundle-analyzer": "^3.4.1"
   },
   "dependencies": {
+    "@material-ui/core": "^4.11.0",
+    "@material-ui/icons": "^4.9.1",
     "@preact/prerender-data-provider": "^3.0.1",
+    "@reduxjs/toolkit": "^1.4.0",
+    "clsx": "^1.1.1",
     "imagemin-mozjpeg": "^8.0.0",
     "imagemin-webpack-plugin": "^2.4.2",
     "markdown-to-jsx": "^6.11.4",
     "parse-md": "^2.0.4",
     "preact": "^10.4.6",
     "preact-cli-plugin-netlify": "^1.6.0",
+    "preact-context": "^1.1.4",
+    "preact-redux": "^2.1.0",
     "preact-render-to-string": "^5.1.10",
     "preact-router": "^3.0.1",
+    "react-redux": "^7.2.2",
+    "redux": "^4.0.5",
     "square-connect": "^4.20201028.5"
   },
   "jest": {

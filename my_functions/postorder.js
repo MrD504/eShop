@@ -21,6 +21,7 @@
                 amount: 100,
                 currency: "GBP"
             },
+            note: "1 x chocco cup cake extraordinaire",
             idempotency_key: body.idempotency_key
         };
 

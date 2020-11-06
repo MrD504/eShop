@@ -1,4 +1,6 @@
 import { h, Component } from 'preact';
+import { Provider as PreduxProvider } from 'react-redux';
+import { configureStore } from '@reduxjs/toolkit';
 import { Router } from 'preact-router';
 import { Provider } from '@preact/prerender-data-provider';
 import Header from './header';
@@ -12,6 +14,11 @@ import ContactSuccess from '../routes/contact-success';
 import Shop from '../routes/shop';
 import PaymentForm from '../routes/payment';
 import NotFoundPage from '../routes/notfound';
+import rootReducer from '../reducers/rootReducer';
+
+const store = configureStore({
+	reducer: rootReducer
+});
 
 export default class App extends Component {
 
@@ -27,17 +34,19 @@ export default class App extends Component {
 		return (
 			<Provider value={props}>
 				<div id="app">
-					<Header />
-					<Router onChange={this.handleRoute}>
-						<Home path="/" />
-						<Blogs path="/blogs/" />
-						<Blog path="/blog/:name" />
-						<Contact path="/contact/" />
-						<ContactSuccess path="/contact/success" />
-						<Shop path="/shop/" />
-						<PaymentForm path="/payment" />
-						<NotFoundPage type="404" default />
-					</Router>
+					<PreduxProvider store={store}>
+						<Header />
+						<Router onChange={this.handleRoute}>
+							<Home path="/" />
+							<Blogs path="/blogs/" />
+							<Blog path="/blog/:name" />
+							<Contact path="/contact/" />
+							<ContactSuccess path="/contact/success" />
+							<Shop path="/shop/" />
+							<PaymentForm path="/payment" />
+							<NotFoundPage type="404" default />
+						</Router>
+					</PreduxProvider>
 				</div>
 			</Provider>
 		);

@@ -1,9 +1,16 @@
 import { h } from 'preact';
+import { connect } from 'react-redux';
 import { useEffect, useState } from 'preact/hooks';
 import Product from '../../components/product';
 import style from './style';
+import { addItem } from '../../features/cart/cartSlice';
 
-const Shop = (_props) => {
+const mapState = (state => {
+    return {};
+});
+const mapDispatch = { addItem }
+const Shop = ({ addItem }) => {
+    console.log(addItem)
     const [products, SetProducts] = useState([]);
 	/**
 	 * Netlify CMS's accept invite link land on home page.
@@ -35,6 +42,9 @@ const Shop = (_props) => {
             })
             SetProducts(prodsWithImg);
         })
+        .catch(_err => {
+            console.error(_err)
+        })
 
         // Get all imagepaths
     },[]);
@@ -44,11 +54,11 @@ const Shop = (_props) => {
             Shop
             <ul>
                 {products && products.map(product => {
-                    return <Product item={product} />
+                    return <Product item={product} addItem={addItem} />
                 })}
             </ul>
         </div>
     )
 }
 
-export default Shop;
+export default connect(null, mapDispatch)(Shop);
