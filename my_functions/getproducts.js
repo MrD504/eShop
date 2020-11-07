@@ -1,26 +1,24 @@
-const fetch = require('node-fetch');
+const SquareConnect = require('square-connect');
+const defaultClient = SquareConnect.ApiClient.instance;
+
+const oauth2 = defaultClient.authentications['oauth2'];
+oauth2.accessToken = process.env.SandBoxBearer;
+
+if(process.env.Environment.toLowerCase() === "development") {
+    defaultClient.basePath = process.env.SandBoxURL;
+}
 
 exports.handler = async function() {
-    const headers = {
-            'Square-Version': '2020-10-28',
-            'Authorization': `Bearer ${process.env.SandBoxBearer}`, 
-            'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': '*',
-            'Accept': 'application/json',
-            'Access-Control-Allow-Headers': 'X-Requested-With',
-            'mode': 'cors'
-    }
-    try {
-        const result = await fetch(`${process.env.SandBoxURL}/catalog/list?types=ITEM,IMAGE`, {
-            headers: headers
-        })
+    const api = new SquareConnect.CatalogApi();
 
-        const formattedResult = await result.json();
+    try {
+        const result = await api.listCatalog({types: "ITEM,IMAGE"});
         return {
             statusCode: 200,
-            body: JSON.stringify({result: formattedResult})
+            body: JSON.stringify({result})
         }
     } catch(err) {
+        console.log(err)
         return {
             statusCode: 502,
             body: JSON.stringify({error: err})

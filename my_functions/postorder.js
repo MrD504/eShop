@@ -1,5 +1,4 @@
 
-    const fetch = require('node-fetch');
     const SquareConnect = require('square-connect');
     const defaultClient = SquareConnect.ApiClient.instance;
 
@@ -7,7 +6,7 @@
     oauth2.accessToken = process.env.SandBoxBearer;
 
     if(process.env.Environment.toLowerCase() === "development") {
-        defaultClient.basePath = "https://connect.squareupsandbox.com";
+        defaultClient.basePath = process.env.SandBoxURL;
     }
 
     exports.handler = async function(event, context) {

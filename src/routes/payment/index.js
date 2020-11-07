@@ -51,6 +51,7 @@ const PaymentForm = (_props) => {
               elementId: 'sq-postal-code',
               placeholder: 'Postal'
           },
+          
           // SqPaymentForm callback functions
           callbacks: {
               /*
